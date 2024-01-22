@@ -25,8 +25,8 @@
           <template v-if="state==1">
             <v-row>
               <v-col v-for="(c,i) of cards" cols="2" class='text-center'>
-                <img v-if='c.s==0' src='/work3/0.png' width="80" @click='imgclick(c)'>
-                <img v-if='c.s==1' :src="'/work3/'+c.t+'.png'" width="80">
+                <img v-if='c.s==0' src='web-2566/work3/0.png' width="80" @click='imgclick(c)'>
+                <img v-if='c.s==1' :src="'web-2566/work3/'+c.t+'.png'" width="80">
               </v-col>
             </v-row>
             <v-btn @click="state=0">เลิกเล่น</v-btn>
