@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Work 3</title>
+</head>
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@3.4.10/dist/vuetify.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.4.10/dist/vuetify.min.css">
+
+
+
+<div id="app">
+  <v-app>
+    <v-container>
+      <v-card>
+        <v-card-title class="bg-deep-purple-accent-2">{{ title }}</v-card-title>
+        <v-card-text class="pa-4">
+          <template v-if="state==0">
+            <v-btn @click='shuffle()'>start</v-btn>
+            <v-btn class="ml-5" @click='goHome()'>Back to profile</v-btn>
+          </template>
+          <template v-if="state==1">
+            <v-row>
+              <v-col v-for="(c,i) of cards" cols="2" class='text-center'>
+                <img v-if='c.s==0' src='/work3/0.png' width="80" @click='imgclick(c)'>
+                <img v-if='c.s==1' :src="'/work3/'+c.t+'.png'" width="80">
+              </v-col>
+            </v-row>
+            <v-btn @click="state=0">เลิกเล่น</v-btn>
+          </template>
+          <template v-if="state==2">
+            <h1>คุณชนะแล้ว เก่งมาก</h1>
+            <br />
+            <v-btn @click="state=0">ตกลง</v-btn>
+          </template>
+          <v-bottom-navigation class="bg-deep-purple-lighten-3">
+            <div class="text-body-1">{{ footer }}</div>
+          </v-bottom-navigation>
+      </v-card>
+    </v-container>
+  </v-app>
+
+</div>
+<script>
+  const vuetify = Vuetify.createVuetify();
+  const app = Vue.createApp({
+    data() {
+      return {
+        title: "Work 3: เกมจับคู่ภาพ โดยใช้ VueJS",
+        footer: "643020400-2 พีรพล ลุนหงส์ สาขา IT",
+        state: 0,
+        cards: [],
+        cards_opened: [],
+        cards_count: 0,
+      };
+    },
+    methods: {
+      shuffle() {
+        this.state = 1;
+        this.cards = [];
+        this.cards_opened = [];
+        this.cards_count = 36;
+        for (var i = 1; i <= 18; i++) {
+          this.cards.push({ t: i, s: 0 });
+          this.cards.push({ t: i, s: 0 });
+          
+        }
+        for (var i = 1; i < 100; i++) {
+          var a = Math.round(Math.random() * 35);
+          var b = Math.round(Math.random() * 35);
+          var t = this.cards[a];
+          this.cards[a] = this.cards[b];
+          this.cards[b] = t;
+        }
+      },
+      imgclick(c) {
+        if (this.cards_opened.length < 2) {
+          c.s = 1;
+          this.cards_opened.push(c);
+          // เมื่อเปิด card ครบ 2 ใบ ให้ตั้งเวลาเพื่อเรียก checkCard 
+          if(this.cards_opened.length==2){
+              setTimeout(this.checkCard,1000);            
+            }                  
+        }
+      },
+      checkCard(){
+           // ให้  a และ b card ทั้ง 2 ใบที่เปิดอยู่
+           var a=this.cards_opened[0];  
+           var b=this.cards_opened[1];
+           this.cards_opened=[];
+           if(a.t==b.t){  // รูปตรงกัน
+              a.s=2;      // s=2 หมายถึงลบภาพออก
+              b.s=2;
+              this.cards_count -= 2;
+           }else{
+              a.s=0;    // s=0 หมายถึง ปิดภาพ
+              b.s=0;
+           }
+           if(this.cards_count==0){  // ไม่เหลือ card บนจอ
+            this.state = 2;          // เปลี่ยน state เป็น 2 เพื่อแสดงหน้า ชนะ
+           }
+        },
+        goHome() {
+        window.location.href = "../index.html";
+        },
+    },
+
+  });
+  app.use(vuetify).mount("#app");
+
+
+</script>
+</body>
+
+</html>
