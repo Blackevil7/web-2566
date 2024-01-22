@@ -20,7 +20,7 @@
         <v-card-text class="pa-4">
           <template v-if="state==0">
             <v-btn @click='shuffle()'>start</v-btn>
-            <v-btn class="ml-5" @click='goHome()'>Back to profile</v-btn>
+            <v-btn class="ml-5" href="index.html">Back to profile</v-btn>
           </template>
           <template v-if="state==1">
             <v-row>
@@ -103,9 +103,9 @@
             this.state = 2;          // เปลี่ยน state เป็น 2 เพื่อแสดงหน้า ชนะ
            }
         },
-        goHome() {
-        window.location.href = "/index.html";
-        },
+        // goHome() {
+        // window.location.href = "/index.html";
+        // },
     },
 
   });
