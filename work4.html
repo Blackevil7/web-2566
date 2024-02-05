@@ -71,8 +71,8 @@
                     a.setState({ s: 0 });
                     b.setState({ s: 0 });
                 }
-                if (this.cardsCount == 0) {
-                    this.setState({ page: 2 });
+                if (this.cardsCount== 0) {
+                    this.setState({ scene: 2 });
                 }
             }
 
@@ -96,7 +96,7 @@
                 }
                 return (
                     <div className="col-2">
-                    {img}
+                        {img}
                     </div>
                 );
             }
@@ -107,7 +107,7 @@
                     app.cardsOpened.push(this);
                     this.setState({ s: 1 });
                     if(app.cardsOpened.length == 2){
-                    setTimeout( ()=>app.checkCard(),2000);
+                        setTimeout( ()=>app.checkCard(),2000);
                     }
                 }
             };
@@ -135,11 +135,8 @@
             <div>
                 จำนวนภาพที่เหลือ {app.state.cardsCount} ใบ
                 <div className="row p-2">{app.state.cards}</div>
-                <button
-                className="btn btn-danger mx-2"
-                onClick={() => app.setState({ scene: 0 })}
-                >
-                เลิกเล่น
+                <button className="btn btn-danger mx-2" onClick={() => app.setState({ scene: 0 })}>
+                    เลิกเล่น
                 </button>
             </div>
             );
@@ -149,8 +146,8 @@
             return (
             <div>
                 ยินดีด้วยคุณชนะแล้ว
-                <button className="btn btn-danger mx-2">
-                ตกลง
+                <button className="btn btn-danger mx-2" onClick={() => app.setState({ scene: 0 })}>
+                    ตกลง
                 </button>
             </div>
             );
