@@ -26,6 +26,7 @@
                     cards : [],
                 }
             }
+
             render() {
                 var sc = <MenuScene app={this}/>  
                 if(this.state.scene==1) sc = <GameScene app={this}/>  
@@ -36,6 +37,7 @@
                         <div className="card-footer"> {this.footer} </div>
                     </div>
             }
+
             start() {
                 this.cardsOpened = [];
                 this.setState({ scene: 1, cards: this.shuffle(), cardsCount: 36 });
@@ -98,7 +100,6 @@
                     </div>
                 );
             }
-
 
             imgClick = () => {
                 var app = this.props.app;
