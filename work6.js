@@ -31,21 +31,21 @@ class App extends React.Component {
             <Card>
                 <Card.Header>{this.title}</Card.Header>
                 <Card.Body>
-                    <Button onClick={() => this.readData()}>Read Data</Button>
-                    <Button onClick={() => this.autoRead()}>Auto Read</Button>
+                    <Button className={'mx-2 mb-3'} onClick={() => this.readData()}>Read Data</Button>
+                    <Button className={'mx-2 mb-3'} onClick={() => this.autoRead()}>Auto Read</Button>
                     <div>
-                        <StudentTable data={this.state.students} app={this} />
+                        <StudentTable className={'table table-striped'} data={this.state.students} app={this} />
                     </div>
                 </Card.Body>
                 <Card.Footer>
                     <b>เพิ่ม/แก้ไขข้อมูล นักศึกษา :</b><br />
-                    <TextInput label="ID" app={this} value="stdid" style={{ width: 120 }} />
+                    <TextInput label="ID" app={this} value="stdid" style={{ width: 150 }} />
                     <TextInput label="คำนำหน้า" app={this} value="stdtitle" style={{ width: 100 }} />
                     <TextInput label="ชื่อ" app={this} value="stdfname" style={{ width: 120 }} />
                     <TextInput label="สกุล" app={this} value="stdlname" style={{ width: 120 }} />
-                    <TextInput label="Email" app={this} value="stdemail" style={{ width: 150 }} />
+                    <TextInput label="Email" app={this} value="stdemail" style={{ width: 200 }} />
                     <TextInput label="Phone" app={this} value="stdphone" style={{ width: 120 }} />
-                    <Button onClick={() => this.insertData()}>Save</Button>
+                    <Button className={'mx-2'} onClick={() => this.insertData()}>Save</Button>
                 </Card.Footer>
                 <Card.Footer>{this.footer}</Card.Footer>
             </Card>
@@ -102,7 +102,7 @@ class App extends React.Component {
 }
 
 function StudentTable({ data, app }) {
-    return <table className='table'>
+    return <table className='table bg-balck'>
         <tr>
             <td>รหัส</td>
             <td>คำนำหน้า</td>
@@ -127,7 +127,7 @@ function StudentTable({ data, app }) {
 }
 
 function TextInput({ label, app, value, style }) {
-    return <label className="form-label">
+    return <label className="form-label me-3">
         {label}:
         <input className="form-control" style={style}
             value={app.state[value]} onChange={(ev) => {
@@ -140,11 +140,11 @@ function TextInput({ label, app, value, style }) {
 }
 
 function EditButton({ std, app }) {
-    return <button onClick={() => app.edit(std)}>แก้ไข</button>
+    return <button class="mx-2 bg-primary border border-primary text-white rounded-3" onClick={() => app.edit(std)}>แก้ไข</button>
 }
 
 function DeleteButton({ std, app }) {
-    return <button onClick={() => app.delete(std)}>ลบ</button>
+    return <button class="mx-2 bg-danger border border-danger text-white rounded-3" onClick={() => app.delete(std)}>ลบ</button>
 }
 
 const container = document.getElementById("myapp");
