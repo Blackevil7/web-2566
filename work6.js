@@ -11,7 +11,8 @@ class App extends React.Component {
     footer = (
         <div>
             By 643020400-2 พีรพล ลุนหงส์ <br />
-            College of Computing, Khon Kaen University
+            College of Computing, Khon Kaen University <br />
+            <Button className={'mx-2 mb-3'} href={'index.html'}>Home Page</Button>
         </div>
     );
     state = {
@@ -33,7 +34,7 @@ class App extends React.Component {
                 <Card.Body>
                     <Button className={'mx-2 mb-3'} onClick={() => this.readData()}>Read Data</Button>
                     <Button className={'mx-2 mb-3'} onClick={() => this.autoRead()}>Auto Read</Button>
-                    <Button className={'mx-2 mb-3'} href={'index.html'}>Home Page</Button>
+                    
                     <div>
                         <StudentTable className={'table table-striped'} data={this.state.students} app={this} />
                     </div>
