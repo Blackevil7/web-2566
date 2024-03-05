@@ -34,7 +34,6 @@ class App extends React.Component {
                 <Card.Body>
                     <Button className={'mx-2 mb-3'} onClick={() => this.readData()}>Read Data</Button>
                     <Button className={'mx-2 mb-3'} onClick={() => this.autoRead()}>Auto Read</Button>
-                    
                     <div>
                         <StudentTable className={'table table-striped'} data={this.state.students} app={this} />
                     </div>
